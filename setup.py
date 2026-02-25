@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='elang',
-    version='3.0.0',
+    version='0.1.0',
     description='Eusha Language - A modern, beginner-friendly programming language',
     author='Eusha',
     packages=['elang'],

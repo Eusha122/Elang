@@ -2,7 +2,7 @@
     "name": "elang-language",
     "displayName": "Elang Language",
     "description": "Syntax highlighting and Run support for the Elang programming language (.elang files)",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "publisher": "eusha",
     "engines": {
         "vscode": "^1.60.0"

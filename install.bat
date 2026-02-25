@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 echo.
 echo  ================================================
-echo    Elang v3.0 Installer
+echo    Elang v0.1.0 Installer
 echo    The Elang Programming Language
 echo  ================================================
 echo.

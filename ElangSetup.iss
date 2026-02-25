@@ -1,5 +1,5 @@
 ; -- ElangSetup.iss --
-; Professional Installer for Elang v3.0
+; Professional Installer for Elang v0.1.0
 ; Compile with Inno Setup 6+ (https://jrsoftware.org/isinfo.php)
 ;
 ; ✅ Installs elang.exe to Program Files
@@ -10,13 +10,13 @@
 
 [Setup]
 AppName=Elang Programming Language
-AppVersion=3.0
+AppVersion=0.1.0
 AppPublisher=Eusha
 AppPublisherURL=https://github.com/eusha/elang
 DefaultDirName={autopf}\Elang
 DefaultGroupName=Elang
 UninstallDisplayIcon={app}\elang.exe
-UninstallDisplayName=Elang Programming Language v3.0
+UninstallDisplayName=Elang Programming Language v0.1.0
 Compression=lzma2
 SolidCompression=yes
 OutputDir=.
