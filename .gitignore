@@ -9,8 +9,11 @@ pip-delete-this-directory.txt
 # Build / PyInstaller
 build/
 build_temp/
-dist/
 *.spec
+
+# Binary distributions
+dist/
+!dist/elang.exe
 
 # VS Code
 .vscode/
