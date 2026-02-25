@@ -1,7 +1,7 @@
 # Elang
 
 <p align="center">
-  <img src="E.png" width="110" alt="Elang Logo"/>
+  <img src="E.svg" width="110" alt="Elang Logo"/>
 </p>
 
 <p align="center">
@@ -19,9 +19,9 @@
 
 ## Overview
 
-**Elang** is a small interpreted programming language designed with clarity and approachability in mind. It features a clean syntax, first-class functions, built-in modules, and a standalone Windows runtime.
+**Elang** is a lightweight interpreted programming language focused on clarity and simplicity. It features a clean syntax, first-class functions, built-in modules, and a standalone Windows runtime.
 
-This is the initial public release (**v0.1.0**). It's a hobby project built to explore language design and provide a simple environment for learning logic.
+This is the initial public release (**v0.1.0**). Elang is currently focused on experimentation in language design and runtime architecture.
 
 ---
 
@@ -150,7 +150,7 @@ Install from VSIX → `elang-language-0.1.0.vsix`
 
 ## Project Status
 
-Elang is currently in **early development**. It is a hobbyist project, so APIs and syntax may evolve in future versions. Contributions, feedback, and bug reports are more than welcome!
+Elang is an early-stage language implementation under active development. The syntax and APIs may evolve over time.
 
 ---
 
