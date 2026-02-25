@@ -1,0 +1,4 @@
+nums = [4, 1, 3, 2]
+nums.sort()
+x = 1
+nums.reverse()

@@ -1,0 +1,56 @@
+$$ ============================================
+$$ Elang v3.0 — Feature Test Suite
+$$ ============================================
+
+$$ --- 1. String Interpolation ---
+say("=== String Interpolation ===").newl
+name = "Eusha"
+age = 16
+say("Hello {name}, you are {age} years old!").newl
+say("Math: 2 + 3 = {2 + 3}").newl
+
+$$ --- 2. Compound Assignment ---
+say("").newl
+say("=== Compound Assignment ===").newl
+x = 10
+say("x = {x}").newl
+x += 5
+say("x += 5 -> {x}").newl
+x -= 3
+say("x -= 3 -> {x}").newl
+x *= 2
+say("x *= 2 -> {x}").newl
+x /= 4
+say("x /= 4 -> {x}").newl
+
+$$ --- 3. Random Module ---
+say("").newl
+say("=== Random Module ===").newl
+use random
+say("Random int (1-10): {random.randint(1, 10)}").newl
+say("Random float: {random.random()}").newl
+
+colors = ["red", "green", "blue"]
+say("Random choice: {random.choice(colors)}").newl
+
+$$ --- 4. Object Literals ---
+say("").newl
+say("=== Object Literals ===").newl
+person = {name: "Eusha", age: 16, lang: "Elang"}
+say(person).newl
+say("Name: {person.name}").newl
+say("Keys: ").space
+say(person.keys()).newl
+say("Has 'age': ").space
+say(person.has("age")).newl
+
+$$ --- 5. Multi-arg say ---
+say("").newl
+say("=== Multi-arg Say ===").newl
+a = "Hello"
+b = "World"
+say(a, b, 42).newl
+
+$$ --- Done ---
+say("").newl
+say("All v3.0 tests passed!").newl

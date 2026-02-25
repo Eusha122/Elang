@@ -1,0 +1,8 @@
+x = 5
+
+fn test() {
+    x = 10
+}
+
+test()
+say(x)

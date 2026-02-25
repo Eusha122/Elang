@@ -1,0 +1,16 @@
+Metadata-Version: 2.4
+Name: elang
+Version: 3.0.0
+Summary: Eusha Language - A modern, beginner-friendly programming language
+Author: Eusha
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Interpreters
+Requires-Python: >=3.8
+License-File: LICENSE
+Dynamic: author
+Dynamic: classifier
+Dynamic: license-file
+Dynamic: requires-python
+Dynamic: summary

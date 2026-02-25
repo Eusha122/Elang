@@ -1,0 +1,12 @@
+fn outer() {
+    x = 10
+    fn inner() {
+        x += 5
+        return x
+    }
+    return inner
+}
+
+f = outer()
+say(f()).newl
+say(f()).newl

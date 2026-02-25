@@ -1,0 +1,75 @@
+{
+    "name": "elang-language",
+    "displayName": "Elang Language",
+    "description": "Syntax highlighting and Run support for the Elang programming language (.elang files)",
+    "version": "1.0.0",
+    "publisher": "eusha",
+    "engines": {
+        "vscode": "^1.60.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "icon": "icon.png",
+    "main": "./extension.js",
+    "activationEvents": [
+        "onLanguage:elang"
+    ],
+    "contributes": {
+        "languages": [
+            {
+                "id": "elang",
+                "aliases": [
+                    "Elang",
+                    "elang"
+                ],
+                "extensions": [
+                    ".elang"
+                ],
+                "configuration": "./language-configuration.json",
+                "icon": {
+                    "light": "./file-icon.svg",
+                    "dark": "./file-icon.svg"
+                }
+            }
+        ],
+        "grammars": [
+            {
+                "language": "elang",
+                "scopeName": "source.elang",
+                "path": "./syntaxes/elang.tmLanguage.json"
+            }
+        ],
+        "commands": [
+            {
+                "command": "elang.run",
+                "title": "Run Elang File",
+                "icon": "$(play)",
+                "category": "Elang"
+            }
+        ],
+        "menus": {
+            "editor/title/run": [
+                {
+                    "command": "elang.run",
+                    "when": "resourceLangId == elang",
+                    "group": "navigation"
+                }
+            ],
+            "editor/context": [
+                {
+                    "command": "elang.run",
+                    "when": "resourceLangId == elang",
+                    "group": "1_run"
+                }
+            ]
+        },
+        "keybindings": [
+            {
+                "command": "elang.run",
+                "key": "ctrl+shift+r",
+                "when": "resourceLangId == elang"
+            }
+        ]
+    }
+}

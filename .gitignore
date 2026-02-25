@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Build / PyInstaller
+build/
+build_temp/
+dist/
+*.spec
+
+# VS Code
+.vscode/
+*.vsix
+eusha-language/extension.js.map
+eusha-language/out/
+
+# OS / Misc
+.DS_Store
+Thumbs.db
+*.log
+tmp/
+.gemini/

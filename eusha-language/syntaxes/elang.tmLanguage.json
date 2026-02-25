@@ -1,0 +1,279 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "Eusha",
+    "scopeName": "source.elang",
+    "fileTypes": [
+        "eusha"
+    ],
+    "patterns": [
+        {
+            "include": "#comments"
+        },
+        {
+            "include": "#strings-double"
+        },
+        {
+            "include": "#strings-single"
+        },
+        {
+            "include": "#numbers"
+        },
+        {
+            "include": "#constants"
+        },
+        {
+            "include": "#keywords"
+        },
+        {
+            "include": "#storage"
+        },
+        {
+            "include": "#support"
+        },
+        {
+            "include": "#function-call"
+        },
+        {
+            "include": "#operators"
+        },
+        {
+            "include": "#punctuation"
+        },
+        {
+            "include": "#variables"
+        }
+    ],
+    "repository": {
+        "comments": {
+            "patterns": [
+                {
+                    "name": "comment.line.double-dollar.elang",
+                    "match": "\\$\\$.*$"
+                }
+            ]
+        },
+        "strings-double": {
+            "name": "string.quoted.double.elang",
+            "begin": "\"",
+            "end": "\"",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.elang"
+                }
+            },
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.elang"
+                }
+            },
+            "patterns": [
+                {
+                    "name": "constant.character.escape.elang",
+                    "match": "\\\\[ntr\\\\\"'{}]"
+                },
+                {
+                    "comment": "String interpolation {expr}",
+                    "begin": "(?<!\\\\)\\{",
+                    "end": "\\}",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.section.interpolation.begin.elang"
+                        }
+                    },
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.section.interpolation.end.elang"
+                        }
+                    },
+                    "name": "meta.interpolation.elang",
+                    "contentName": "source.elang.embedded",
+                    "patterns": [
+                        {
+                            "include": "source.elang"
+                        }
+                    ]
+                }
+            ]
+        },
+        "strings-single": {
+            "name": "string.quoted.single.elang",
+            "begin": "'",
+            "end": "'",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.elang"
+                }
+            },
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.elang"
+                }
+            },
+            "patterns": [
+                {
+                    "name": "constant.character.escape.elang",
+                    "match": "\\\\[ntr\\\\\"']"
+                }
+            ]
+        },
+        "numbers": {
+            "patterns": [
+                {
+                    "name": "constant.numeric.float.elang",
+                    "match": "\\b\\d+\\.\\d+\\b"
+                },
+                {
+                    "name": "constant.numeric.integer.elang",
+                    "match": "\\b\\d+\\b"
+                }
+            ]
+        },
+        "constants": {
+            "patterns": [
+                {
+                    "name": "constant.language.boolean.true.elang",
+                    "match": "\\btrue\\b"
+                },
+                {
+                    "name": "constant.language.boolean.false.elang",
+                    "match": "\\bfalse\\b"
+                },
+                {
+                    "name": "constant.language.null.elang",
+                    "match": "\\bnone\\b"
+                }
+            ]
+        },
+        "keywords": {
+            "patterns": [
+                {
+                    "name": "keyword.control.conditional.elang",
+                    "match": "\\b(if|else)\\b"
+                },
+                {
+                    "name": "keyword.control.loop.elang",
+                    "match": "\\b(while|for|in|step|reverse)\\b"
+                },
+                {
+                    "name": "keyword.control.flow.elang",
+                    "match": "\\b(return|break|continue)\\b"
+                },
+                {
+                    "name": "keyword.control.import.elang",
+                    "match": "\\buse\\b"
+                },
+                {
+                    "name": "keyword.operator.logical.elang",
+                    "match": "\\b(and|or|not)\\b"
+                }
+            ]
+        },
+        "storage": {
+            "patterns": [
+                {
+                    "name": "storage.type.function.elang",
+                    "match": "\\bfn\\b"
+                }
+            ]
+        },
+        "support": {
+            "patterns": [
+                {
+                    "comment": "Built-in IO functions",
+                    "name": "support.function.builtin.elang",
+                    "match": "\\b(say|take|len|help)(?=\\s*\\()"
+                },
+                {
+                    "comment": "Built-in methods after dot",
+                    "name": "support.function.method.elang",
+                    "match": "(?<=\\.)\\b(newl|space|tab|push|pop|sort|reverse|sum|max|min|length|filter|map|upper|lower|trim|contains|split|replace|to_int|to_float|to_str|keys|values|has)\\b"
+                }
+            ]
+        },
+        "function-call": {
+            "patterns": [
+                {
+                    "comment": "Function definition name",
+                    "match": "\\b(fn)\\s+([a-zA-Z_][a-zA-Z0-9_]*)",
+                    "captures": {
+                        "1": {
+                            "name": "storage.type.function.elang"
+                        },
+                        "2": {
+                            "name": "entity.name.function.definition.elang"
+                        }
+                    }
+                },
+                {
+                    "comment": "Function call",
+                    "name": "entity.name.function.call.elang",
+                    "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)(?=\\s*\\()"
+                }
+            ]
+        },
+        "operators": {
+            "patterns": [
+                {
+                    "name": "keyword.operator.arrow.elang",
+                    "match": "=>"
+                },
+                {
+                    "name": "keyword.operator.range.elang",
+                    "match": "\\.\\."
+                },
+                {
+                    "name": "keyword.operator.comparison.elang",
+                    "match": "==|!=|<=|>=|<|>"
+                },
+                {
+                    "name": "keyword.operator.assignment.compound.elang",
+                    "match": "\\+=|-=|\\*=|/="
+                },
+                {
+                    "name": "keyword.operator.assignment.elang",
+                    "match": "(?<![=!<>])=(?!=)"
+                },
+                {
+                    "name": "keyword.operator.arithmetic.elang",
+                    "match": "\\*\\*|[+\\-*/%]"
+                }
+            ]
+        },
+        "punctuation": {
+            "patterns": [
+                {
+                    "name": "punctuation.definition.block.elang",
+                    "match": "[{}]"
+                },
+                {
+                    "name": "punctuation.definition.bracket.elang",
+                    "match": "[\\[\\]]"
+                },
+                {
+                    "name": "punctuation.definition.paren.elang",
+                    "match": "[()]"
+                },
+                {
+                    "name": "punctuation.separator.comma.elang",
+                    "match": ","
+                },
+                {
+                    "name": "punctuation.separator.colon.elang",
+                    "match": ":"
+                },
+                {
+                    "name": "punctuation.accessor.dot.elang",
+                    "match": "\\."
+                }
+            ]
+        },
+        "variables": {
+            "patterns": [
+                {
+                    "name": "variable.other.elang",
+                    "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"
+                }
+            ]
+        }
+    }
+}

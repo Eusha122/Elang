@@ -1,0 +1,17 @@
+$$ How to take a list input in Elang
+say("Enter some numbers separated by commas: ").newl
+raw = take("> ")
+
+$$ 1. Split by comma (returns list of strings)
+items = raw.split(",")
+say("Raw strings: ").space
+say(items).newl
+
+$$ 2. Convert to numbers using .map() and a lambda
+$$ Note: trim() is useful to remove accidental spaces around commas
+nums = items.map(x => x.trim().to_int())
+
+say("Actual numbers: ").space
+say(nums).newl
+say("Sum of numbers: ").space
+say(nums.sum()).newl
