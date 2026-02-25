@@ -26,6 +26,7 @@ WizardStyle=modern
 ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
 LicenseFile=..\LICENSE
+PrivilegesRequired=lowest
 ChangesEnvironment=yes
 
 [Files]
@@ -103,7 +104,7 @@ end;
 
 procedure CurStepChanged(CurStep: TSetupStep);
 begin
-  if (CurStep = ssPostInstall) and IsTaskSelected('addtopath') then
+  if (CurStep = ssPostInstall) and WizardIsTaskSelected('addtopath') then
     AddToPath(ExpandConstant('{app}'));
 end;
 
