@@ -1,7 +1,7 @@
 # Elang for Visual Studio Code
 
 <p align="center">
-  <img src="icon.png" width="128" alt="Elang Logo"/>
+  <img src="file-icon.svg" width="128" alt="Elang Logo"/>
 </p>
 
 A professional development environment for the **Elang** programming language. This extension provides essential language support, including robust syntax highlighting and integrated execution capabilities.
