@@ -1,8 +1,0 @@
-a = 10
-b = 20
-
-fn add(a, b) -> int {
-    return a + b
-}
-
-say(add(a, b)).newl

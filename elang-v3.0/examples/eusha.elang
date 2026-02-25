@@ -1,2 +1,0 @@
-a = take("hello")
-say(a)

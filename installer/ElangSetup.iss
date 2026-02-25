@@ -12,7 +12,7 @@
 AppName=Elang Programming Language
 AppVersion=0.1.0
 AppPublisher=Eusha
-AppPublisherURL=https://github.com/eusha/elang
+AppPublisherURL=https://github.com/Eusha122/Elang
 DefaultDirName={autopf}\Elang
 DefaultGroupName=Elang
 UninstallDisplayIcon={app}\elang.exe
@@ -21,26 +21,26 @@ Compression=lzma2
 SolidCompression=yes
 OutputDir=.
 OutputBaseFilename=ElangSetup
-; SetupIconFile=E.ico        ; <-- Uncomment this if you have an .ico file
+; SetupIconFile=..\E.ico
 WizardStyle=modern
 ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
-LicenseFile=LICENSE
+LicenseFile=..\LICENSE
 ChangesEnvironment=yes
 
 [Files]
 ; The standalone Elang runtime (no Python needed!)
-Source: "dist\elang.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\dist\elang.exe"; DestDir: "{app}"; Flags: ignoreversion
 
 ; The VS Code extension VSIX
-Source: "eusha-language\elang-language-1.0.0.vsix"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\vscode-extension\elang-language-0.1.0.vsix"; DestDir: "{app}"; Flags: ignoreversion
 
 ; Example files
-Source: "examples\*"; DestDir: "{app}\examples"; Flags: ignoreversion recursesubdirs
+Source: "..\examples\*"; DestDir: "{app}\examples"; Flags: ignoreversion recursesubdirs
 
 ; Docs
-Source: "README.md"; DestDir: "{app}"; Flags: ignoreversion
-Source: "LICENSE"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\README.md"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\LICENSE"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
 ; Start Menu shortcuts
@@ -54,29 +54,24 @@ Name: fileassoc; Description: "Associate .elang files with Elang"; Flags: checke
 Name: installvscode; Description: "Install VS Code extension (if VS Code is installed)"; Flags: checkedonce
 
 [Registry]
-; File association — only if user checked the task
-; These are automatically removed on uninstall thanks to 'uninsdeletekeyifempty' and 'uninsdeletevalue'
+; File association
 Root: HKCU; Subkey: "Software\Classes\.elang"; ValueType: string; ValueData: "ElangFile"; Tasks: fileassoc; Flags: uninsdeletevalue
 Root: HKCU; Subkey: "Software\Classes\ElangFile"; ValueType: string; ValueData: "Elang Source File"; Tasks: fileassoc; Flags: uninsdeletekey
 Root: HKCU; Subkey: "Software\Classes\ElangFile\DefaultIcon"; ValueType: string; ValueData: "{app}\elang.exe,0"; Tasks: fileassoc; Flags: uninsdeletekey
 Root: HKCU; Subkey: "Software\Classes\ElangFile\shell\open\command"; ValueType: string; ValueData: """{app}\elang.exe"" ""%1"""; Tasks: fileassoc; Flags: uninsdeletekey
 
 [Run]
-; Install VS Code extension after setup (only if task selected and 'code' exists)
-Filename: "code"; Parameters: "--install-extension ""{app}\elang-language-1.0.0.vsix"" --force"; \
+; Install VS Code extension
+Filename: "code"; Parameters: "--install-extension ""{app}\elang-language-0.1.0.vsix"" --force"; \
     StatusMsg: "Installing VS Code extension..."; Tasks: installvscode; \
     Flags: nowait runhidden skipifdoesntexist
 
 [UninstallRun]
-; Remove VS Code extension on uninstall
+; Remove VS Code extension
 Filename: "code"; Parameters: "--uninstall-extension eusha.elang-language"; \
     Flags: nowait runhidden skipifdoesntexist
 
 [Code]
-// ============================================================
-//  PATH Management — Clean Add & Remove
-// ============================================================
-
 procedure AddToPath(Dir: string);
 var
   Path: string;
@@ -85,8 +80,7 @@ begin
     Path := '';
   if Pos(Dir, Path) = 0 then
   begin
-    if Path <> '' then
-      Path := Path + ';';
+    if Path <> '' then Path := Path + ';';
     Path := Path + Dir;
     RegWriteStringValue(HKEY_CURRENT_USER, 'Environment', 'Path', Path);
   end;
@@ -98,7 +92,6 @@ var
 begin
   if RegQueryStringValue(HKEY_CURRENT_USER, 'Environment', 'Path', Path) then
   begin
-    // Remove ";Dir" or "Dir;" or just "Dir"
     NewPath := Path;
     StringChangeEx(NewPath, ';' + Dir, '', True);
     StringChangeEx(NewPath, Dir + ';', '', True);
@@ -108,14 +101,12 @@ begin
   end;
 end;
 
-// Called after installation steps complete
 procedure CurStepChanged(CurStep: TSetupStep);
 begin
   if (CurStep = ssPostInstall) and IsTaskSelected('addtopath') then
     AddToPath(ExpandConstant('{app}'));
 end;
 
-// Called during uninstall — removes PATH entry
 procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
 begin
   if CurUninstallStep = usPostUninstall then
